@@ -9,21 +9,22 @@ Cypress.Commands.add('tLogin', (Role, Email, Password, Remember) => {
             method: 'POST',
             url: 'http://cms.chtoma.com/api/login',
             body: {
-                role: Role,
-                email: Email,
-                password: pwd,
-                remember: Remember
+                
+                "email": Email,
+                "password": pwd,
+                "role": Role,
+                //"remember": Remember
             }
         })
             .then(res => {
                 console.log(res)
-                console.log(res.body.data.token)
+                console.log(res.body.data)
                 if (res.status == 201) {
                     cy.log("Login Successfully.")
                     cy.window().then($win => {
                         console.log($win)
-                        let tokeVal = '{"token":"' + res.body.data.token +'","role":"manager","userId":3}'
-                        $win.localStorage.setItem("cms", tokeVal)    
+                        console.log(JSON.stringify(res.body.data));
+                        $win.localStorage.setItem("cms", JSON.stringify(res.body.data));    
                     })
                 }
         })

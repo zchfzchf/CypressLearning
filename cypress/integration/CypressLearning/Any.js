@@ -1,6 +1,6 @@
 describe("Exp", () => {
     it('', () => {
-        cy.tLogin('student','student@admin.com','111111',true)
+        cy.tLogin('manager','manager@admin.com','111111',true)
 
         /*var AES= require("crypto-js/aes");
         const pwd = AES.encrypt('111111', 'cms').toString();
