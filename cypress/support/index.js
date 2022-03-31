@@ -22,3 +22,4 @@ import './tLogin'
 // require('./commands')
 
 
+import 'cypress-react-selector';

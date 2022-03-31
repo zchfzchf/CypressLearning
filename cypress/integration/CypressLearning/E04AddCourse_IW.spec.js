@@ -474,7 +474,7 @@ describe("Add Course - Manager", () => {
         cy.get("#teacherId").click({ force: true }).then(() => { cy.get("#teacherId").type(toType, { delay: 1000, force: true }) });
 
 
-        let desc = '168'.repeat(88);
+        let desc = '168'.repeat(40);
         cy.get("#detail").type(desc, { force: true });
 
         let pic = './cypress/fixtures/cmsup02.png';
@@ -507,6 +507,7 @@ describe("Add Course - Manager", () => {
 
         cy.get("button").contains("Create Course").click({force:true});
         cy.wait(3000);
+
         cy.contains("Add Chapter").should('be.visible');
         cy.contains("Add Class Time").should('be.visible');
 

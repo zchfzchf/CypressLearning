@@ -1,6 +1,6 @@
 describe("Exp", () => {
     it('', () => {
-        cy.tLogin('manager','manager@admin.com','111111',true)
+        //cy.tLogin('manager','manager@admin.com','111111',true)
 
         /*var AES= require("crypto-js/aes");
         const pwd = AES.encrypt('111111', 'cms').toString();
@@ -22,7 +22,9 @@ describe("Exp", () => {
                 console.log(BD)
             })*/
         
-
+        cy.visit('https://www.google.com');
+        cy.get('.gLFyf.gsfi').type('selenium');
+        cy.get('.CqAVzb > center > .gNO89b').click();
 
     })
 

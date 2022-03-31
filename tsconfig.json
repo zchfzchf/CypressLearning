@@ -1,7 +1,19 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "types": [ "cypress" ]
+    "types": [
+      "cypress"
+    ]
   },
-  "include": [ "**/*.*" ]
+  "include": [
+    "**/*.*"
+  ],
+  "compilerOptions": {
+    "sourceType": "module",
+    "types": [
+      "node",
+      "cypress",
+      "cypress-react-selector"
+    ]
+  }
 }
