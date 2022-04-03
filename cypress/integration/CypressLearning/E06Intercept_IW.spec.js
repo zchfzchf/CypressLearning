@@ -181,6 +181,9 @@ describe("", { baseUrl: "http://cms.chtoma.com/" }, () => {
             expect(resp.response.body.data.name).to.eql("BB88");
         })
 
+        // cy.intercept() used for spy more or stub more?
+        // cy.intercept() when using "POST", only spy? If it can be stub, how to assert?
+
     })
 
 });

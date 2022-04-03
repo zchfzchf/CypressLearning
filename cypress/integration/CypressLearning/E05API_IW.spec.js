@@ -49,7 +49,7 @@ describe("", { baseUrl: "http://cms.chtoma.com/" }, () => {
         // })
     });
 
-    it('Create Course', () => {
+    it.only('Create Course', () => {
 
         const Detail='A'.replace(100)
 
