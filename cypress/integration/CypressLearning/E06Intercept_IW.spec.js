@@ -6,7 +6,7 @@ describe("", { baseUrl: "http://cms.chtoma.com/" }, () => {
     const Email = "manager@admin.com";
     const Role = "manager";
 
-    before(() => {
+    beforeEach(() => {
 
 
         cy.request({
@@ -23,13 +23,10 @@ describe("", { baseUrl: "http://cms.chtoma.com/" }, () => {
         })
             .then(res => {
 
-                if (res.status == 201) {
-                    cy.log("Login Successfully.")
-                    cy.window().then($win => {
-                        Token = res.body.data.token
-                        $win.localStorage.setItem("cms", JSON.stringify(res.body.data));
-                    })
-                }
+                cy.window().then($win => {
+                    Token = res.body.data.token
+                    $win.localStorage.setItem("cms", JSON.stringify(res.body.data));
+                })
 
 
                 cy.visit("https://cms-lyart.vercel.app/dashboard/manager");
@@ -82,7 +79,7 @@ describe("", { baseUrl: "http://cms.chtoma.com/" }, () => {
 
         cy.intercept(
             {
-                url: "http://cms.chtoma.com/api/courses/type",
+                url: "api/courses/type",
                 method: "GET"
             },
             {
@@ -106,10 +103,15 @@ describe("", { baseUrl: "http://cms.chtoma.com/" }, () => {
 
     it.only("ID03: Create Course - POST || Spy", () => {
         const Detail = 'A'.replace(100)
+        // We can use the stub here. Use the data format as requirement in the document. Here, the response can be reference.
+        cy.intercept(
+            "POST",
+            "api/courses",
+            {
+               fixture:"create_course.json"
+            }).as("post");
 
-        cy.intercept("POST", "api/courses").as("post");
-
-        cy.get("#name").type('BB88');
+        cy.get("#name").type('CC88');
         let da = new Date();
         let d = da.valueOf();
         let td = d + 1000 * 60 * 60 * 24;
@@ -177,7 +179,8 @@ describe("", { baseUrl: "http://cms.chtoma.com/" }, () => {
         cy.get("button").contains("Create Course").click({ force: true });
 
         cy.wait("@post").then(resp => {
-            expect(resp.response.statusCode).to.eql(201);
+            console.log(resp);
+            expect(resp.response.body.code).to.eql(201);
             expect(resp.response.body.data.name).to.eql("BB88");
         })
 

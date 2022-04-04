@@ -23,13 +23,11 @@ describe("", { baseUrl: "http://cms.chtoma.com/" }, () => {
         })
             .then(res => {
 
-                if (res.status == 201) {
-                    cy.log("Login Successfully.")
-                    cy.window().then($win => {
-                        Token = res.body.data.token
-                        $win.localStorage.setItem("cms", JSON.stringify(res.body.data));
-                    })
-                }
+                cy.window().then($win => {
+                    Token = res.body.data.token
+                    $win.localStorage.setItem("cms", JSON.stringify(res.body.data));
+                })
+
 
 
                 cy.visit("https://cms-lyart.vercel.app/dashboard/manager");
@@ -51,7 +49,7 @@ describe("", { baseUrl: "http://cms.chtoma.com/" }, () => {
 
     it.only('Create Course', () => {
 
-        const Detail='A'.replace(100)
+        const Detail = 'A'.replace(100)
 
         let da = new Date();
         let d = da.valueOf();
@@ -85,7 +83,7 @@ describe("", { baseUrl: "http://cms.chtoma.com/" }, () => {
 
     })
 
-    it('Course Query by Name', () =>{
+    it('Course Query by Name', () => {
 
         cy.request({
             "method": "GET",
@@ -101,6 +99,6 @@ describe("", { baseUrl: "http://cms.chtoma.com/" }, () => {
 
         });
     });
-    
+
 
 });
